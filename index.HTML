@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sohel Enterprises – Heavy-Duty U-Bolts</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --primary:#0a1628;
+    --secondary:#112240;
+    --accent:#f5c518;
+    --accent2:#e6b000;
+    --text:#e8eaf6;
+    --muted:#8892a4;
+    --card:#15294a;
+    --border:#1e3a5f;
+    --success:#22c55e;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--primary);color:var(--text);min-height:100vh;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,22,40,0.97);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    padding:0 1.5rem;
+  }
+  .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem;}
+  .logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none;}
+  .logo-icon{width:36px;height:36px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .logo-icon svg{width:22px;height:22px;fill:var(--primary);}
+  .logo-text{line-height:1.2;}
+  .logo-text .name{font-size:1.05rem;font-weight:700;color:var(--accent);letter-spacing:0.02em;}
+  .logo-text .sub{font-size:0.65rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+  nav{display:flex;align-items:center;gap:1.5rem;}
+  nav a{color:var(--muted);text-decoration:none;font-size:0.88rem;transition:color .2s;}
+  nav a:hover{color:var(--accent);}
+  .cart-btn{
+    position:relative;background:none;border:1.5px solid var(--accent);border-radius:8px;
+    padding:8px 14px;cursor:pointer;color:var(--accent);display:flex;align-items:center;gap:6px;
+    font-size:0.88rem;font-weight:600;transition:all .2s;
+  }
+  .cart-btn:hover{background:var(--accent);color:var(--primary);}
+  .cart-count{
+    position:absolute;top:-8px;right:-8px;
+    background:var(--accent);color:var(--primary);
+    border-radius:50%;width:20px;height:20px;font-size:0.7rem;font-weight:700;
+    display:none;align-items:center;justify-content:center;
+  }
+  .cart-count.show{display:flex;}
+  .nav-links{display:flex;align-items:center;gap:1.5rem;}
+  @media(max-width:650px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    position:relative;min-height:520px;display:flex;align-items:center;
+    background:url('https://i.ibb.co/v4mJsFqf/Screenshot-2026-04-07-200843.png') center/cover no-repeat;
+    overflow:hidden;
+  }
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(10,22,40,0.93) 0%,rgba(10,22,40,0.75) 60%,rgba(10,22,40,0.55) 100%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:4rem 1.5rem;}
+  .hero-badge{
+    display:inline-block;background:var(--accent);color:var(--primary);
+    font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    padding:5px 14px;border-radius:4px;margin-bottom:1.2rem;
+  }
+  .hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.2;max-width:600px;margin-bottom:1rem;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:1rem;max-width:480px;margin-bottom:2rem;line-height:1.7;}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--accent);color:var(--primary);border:none;
+    padding:13px 28px;border-radius:8px;font-weight:700;font-size:0.95rem;
+    cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-1px);}
+  .btn-outline{
+    background:none;color:var(--text);border:1.5px solid var(--border);
+    padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.95rem;
+    cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;
+  }
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+  .hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;}
+  .stat{text-align:left;}
+  .stat .num{font-size:1.6rem;font-weight:800;color:var(--accent);}
+  .stat .label{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+
+  /* SECTION */
+  section{max-width:1200px;margin:0 auto;padding:4rem 1.5rem;}
+  .section-head{text-align:center;margin-bottom:2.5rem;}
+  .section-head h2{font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;}
+  .section-head p{color:var(--muted);font-size:0.95rem;}
+  .section-head h2 span{color:var(--accent);}
+
+  /* FILTERS */
+  .filters{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+  .filter-btn{
+    background:var(--secondary);border:1.5px solid var(--border);
+    color:var(--muted);padding:9px 20px;border-radius:40px;
+    font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .2s;
+  }
+  .filter-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .filter-btn.active{background:var(--accent);border-color:var(--accent);color:var(--primary);}
+
+  /* PRODUCT GRID */
+  .products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:1.5rem;
+  }
+  .product-card{
+    background:var(--card);border:1.5px solid var(--border);border-radius:14px;
+    overflow:hidden;transition:all .3s;cursor:pointer;position:relative;
+    display:flex;flex-direction:column;
+  }
+  .product-card:hover{
+    transform:translateY(-4px) scale(1.01);
+    border-color:var(--accent);
+    box-shadow:0 0 20px rgba(245,197,24,0.18);
+  }
+  .product-card.hidden{display:none;}
+  .product-img-wrap{
+    height:190px;overflow:hidden;background:#0d1e38;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .product-img-wrap img{
+    width:100%;height:100%;object-fit:contain;
+    padding:12px;transition:transform .4s;
+  }
+  .product-card:hover .product-img-wrap img{transform:scale(1.06);}
+  .product-badge{
+    position:absolute;top:12px;left:12px;
+    background:var(--accent);color:var(--primary);
+    font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    padding:3px 10px;border-radius:4px;
+  }
+  .product-body{padding:1rem;flex:1;display:flex;flex-direction:column;}
+  .product-name{font-size:0.95rem;font-weight:700;margin-bottom:4px;}
+  .product-desc{font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem;flex:1;}
+  .product-footer{display:flex;align-items:center;justify-content:space-between;}
+  .product-price{font-size:1.2rem;font-weight:800;color:var(--accent);}
+  .add-btn{
+    background:var(--accent);color:var(--primary);border:none;
+    border-radius:7px;padding:8px 14px;font-size:0.8rem;font-weight:700;
+    cursor:pointer;transition:all .2s;white-space:nowrap;
+  }
+  .add-btn:hover{background:var(--accent2);transform:scale(1.04);}
+  .add-btn:active{transform:scale(0.97);}
+
+  /* CART OVERLAY */
+  .cart-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.55);
+    z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  .cart-overlay.open{opacity:1;pointer-events:all;}
+  .cart-panel{
+    position:fixed;right:0;top:0;bottom:0;width:min(480px,100vw);
+    background:var(--secondary);border-left:1px solid var(--border);
+    z-index:201;display:flex;flex-direction:column;
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+    overflow:hidden;
+  }
+  .cart-overlay.open .cart-panel{transform:translateX(0);}
+  .cart-header{
+    padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+  }
+  .cart-header h3{font-size:1.1rem;font-weight:700;color:var(--accent);}
+  .close-btn{
+    background:none;border:none;color:var(--muted);cursor:pointer;
+    font-size:1.5rem;line-height:1;padding:4px;border-radius:4px;transition:color .2s;
+  }
+  .close-btn:hover{color:var(--text);}
+  .cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+  .empty-cart{
+    text-align:center;padding:3rem 1rem;color:var(--muted);
+  }
+  .empty-cart svg{width:60px;height:60px;fill:var(--border);margin-bottom:1rem;}
+  .empty-cart p{font-size:0.95rem;}
+  .cart-item{
+    display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);
+    align-items:flex-start;
+  }
+  .cart-item-img{width:60px;height:60px;object-fit:contain;border-radius:8px;background:#0d1e38;padding:4px;flex-shrink:0;}
+  .cart-item-info{flex:1;min-width:0;}
+  .cart-item-name{font-size:0.9rem;font-weight:600;margin-bottom:4px;}
+  .cart-item-price{color:var(--accent);font-size:0.88rem;font-weight:700;}
+  .qty-ctrl{display:flex;align-items:center;gap:6px;margin-top:8px;}
+  .qty-btn{
+    background:var(--border);border:none;color:var(--text);
+    width:26px;height:26px;border-radius:5px;cursor:pointer;font-size:1rem;
+    display:flex;align-items:center;justify-content:center;transition:background .2s;
+  }
+  .qty-btn:hover{background:var(--accent);color:var(--primary);}
+  .qty-num{font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;}
+  .remove-btn{
+    background:none;border:none;color:#e24b4b;cursor:pointer;
+    font-size:0.75rem;margin-left:auto;padding:4px;border-radius:4px;transition:opacity .2s;
+    align-self:flex-start;flex-shrink:0;
+  }
+  .remove-btn:hover{opacity:0.7;}
+  .cart-summary{
+    padding:1rem 1.5rem;border-top:1px solid var(--border);flex-shrink:0;
+    background:var(--primary);
+  }
+  .cart-total-row{display:flex;justify-content:space-between;font-weight:700;font-size:1.05rem;margin-bottom:1rem;}
+  .cart-total-row span:last-child{color:var(--accent);}
+
+  /* ORDER FORM */
+  .order-form{display:flex;flex-direction:column;gap:0.75rem;}
+  .order-form h4{font-size:0.95rem;font-weight:700;color:var(--accent);margin-bottom:0.25rem;border-top:1px solid var(--border);padding-top:1rem;}
+  .form-row{display:flex;flex-direction:column;gap:4px;}
+  .form-row label{font-size:0.75rem;color:var(--muted);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;}
+  .form-row input,.form-row select,.form-row textarea{
+    background:var(--secondary);border:1.5px solid var(--border);border-radius:7px;
+    color:var(--text);padding:10px 12px;font-size:0.88rem;
+    transition:border-color .2s;font-family:inherit;
+  }
+  .form-row input:focus,.form-row select:focus,.form-row textarea:focus{
+    outline:none;border-color:var(--accent);
+  }
+  .form-row select option{background:var(--secondary);}
+  .form-row textarea{resize:vertical;min-height:70px;}
+  .submit-btn{
+    width:100%;background:var(--accent);color:var(--primary);border:none;
+    border-radius:8px;padding:13px;font-size:0.95rem;font-weight:700;
+    cursor:pointer;transition:all .2s;margin-top:0.5rem;
+  }
+  .submit-btn:hover{background:var(--accent2);}
+  .submit-btn:disabled{opacity:0.6;cursor:not-allowed;}
+
+  /* TOAST */
+  .toast{
+    position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(30px);
+    background:#1a2f50;border:1px solid var(--accent);border-radius:10px;
+    padding:12px 22px;font-size:0.88rem;font-weight:600;color:var(--text);
+    z-index:500;opacity:0;transition:all .35s;white-space:nowrap;
+    display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast-icon{font-size:1.1rem;}
+
+  /* SUCCESS */
+  .success-msg{
+    text-align:center;padding:2rem 1rem;
+    display:none;
+  }
+  .success-msg.show{display:block;}
+  .success-icon{font-size:3rem;margin-bottom:0.75rem;}
+  .success-msg h3{font-size:1.1rem;font-weight:700;color:var(--success);margin-bottom:0.5rem;}
+  .success-msg p{color:var(--muted);font-size:0.88rem;line-height:1.6;}
+
+  /* FLOATING BUTTONS */
+  .float-btns{
+    position:fixed;bottom:24px;right:24px;
+    display:flex;flex-direction:column;gap:12px;z-index:150;
+  }
+  .float-btn{
+    width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    text-decoration:none;
+  }
+  .float-btn:hover{transform:scale(1.1);}
+  .float-wa{background:#25d366;}
+  .float-call{background:var(--accent);}
+  .float-btn svg{width:26px;height:26px;fill:#fff;}
+  .float-call svg{fill:var(--primary);}
+
+  /* CONTACT SECTION */
+  .contact-section{
+    background:var(--secondary);border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .contact-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.5rem;max-width:1200px;margin:0 auto;padding:3rem 1.5rem;
+  }
+  .contact-card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:1.25rem;display:flex;align-items:flex-start;gap:1rem;
+  }
+  .contact-icon{
+    width:44px;height:44px;background:rgba(245,197,24,0.12);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.3rem;
+  }
+  .contact-info .label{font-size:0.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
+  .contact-info a,.contact-info p{color:var(--text);font-size:0.88rem;text-decoration:none;transition:color .2s;}
+  .contact-info a:hover{color:var(--accent);}
+
+  /* FOOTER */
+  footer{text-align:center;padding:2rem 1.5rem;color:var(--muted);font-size:0.82rem;border-top:1px solid var(--border);}
+  footer strong{color:var(--accent);}
+
+  /* STRIPE */
+  .trust-bar{
+    background:var(--accent);padding:10px 1.5rem;text-align:center;
+    font-size:0.78rem;font-weight:700;color:var(--primary);letter-spacing:0.05em;
+  }
+  .trust-bar span{margin:0 1.5rem;}
+
+  @media(max-width:480px){
+    .hero{min-height:420px;}
+    .hero-stats{gap:1.2rem;}
+    .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;}
+    .product-img-wrap{height:150px;}
+    .float-btns{bottom:16px;right:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      <div class="logo-text">
+        <div class="name">Sohel Enterprises</div>
+        <div class="sub">Industrial U-Bolts</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <nav>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:+917056233017">+91 70562 33017</a>
+      </nav>
+    </div>
+    <button class="cart-btn" onclick="toggleCart()">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.68 8.39c-.16.79-.84 1.36-1.65 1.36H8.1c-.82 0-1.52-.6-1.66-1.41L5.17 5zM3 3H1V1H3V3zM5.17 3H1V1h4l.17 2z"/></svg>
+      Cart
+      <div class="cart-count" id="cartCount">0</div>
+    </button>
+  </div>
+</header>
+
+<div class="trust-bar">
+  <span>🔩 Premium Steel Quality</span>
+  <span>🚚 All Truck & Bus Sizes Available</span>
+  <span>📞 Call / WhatsApp Orders Welcome</span>
+</div>
+
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Trusted Industrial Supplier</div>
+    <h1>Premium Quality <span>U-Bolts</span> Available in All Sizes</h1>
+    <p>Heavy-duty forged steel U-Bolts for trucks, buses &amp; containers. Direct from manufacturer at competitive prices. Based in Jind, Haryana.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#products">Shop Now</a>
+      <a class="btn-outline" href="https://wa.me/917056233017?text=Hello%20I%20want%20to%20order%20U-bolts" target="_blank">WhatsApp Order</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">10+</div><div class="label">Bolt Sizes</div></div>
+      <div class="stat"><div class="num">₹71</div><div class="label">Starting Price</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Steel Grade</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="products">
+  <div class="section-head">
+    <h2>Our <span>U-Bolt</span> Range</h2>
+    <p>High-strength steel U-Bolts for heavy commercial vehicles — all sizes in stock</p>
+  </div>
+
+  <div class="filters" id="filterBtns">
+    <button class="filter-btn active" onclick="filterProducts('all',this)">All Sizes</button>
+    <button class="filter-btn" onclick="filterProducts('Truck Suspension',this)">Truck Suspension</button>
+    <button class="filter-btn" onclick="filterProducts('Heavy-Duty',this)">Heavy-Duty</button>
+    <button class="filter-btn" onclick="filterProducts('Extra Long',this)">Extra Long</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div class="contact-info">
+        <div class="label">Location</div>
+        <p>Bhiwani Road Bypass, Jind, Haryana</p>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div class="contact-info">
+        <div class="label">Call / WhatsApp</div>
+        <a href="tel:+917056233017">+91 70562 33017</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-info">
+        <div class="label">Email</div>
+        <a href="mailto:sohelkhan290@gmail.com">sohelkhan290@gmail.com</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🕐</div>
+      <div class="contact-info">
+        <div class="label">Order Method</div>
+        <p>Online form • WhatsApp • Call</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><strong>Sohel Enterprises</strong> — Heavy-Duty U-Bolts for Trucks, Buses &amp; Containers</p>
+  <p style="margin-top:6px">Bhiwani Road Bypass, Jind, Haryana &nbsp;|&nbsp; +91 70562 33017 &nbsp;|&nbsp; sohelkhan290@gmail.com</p>
+  <p style="margin-top:10px;font-size:0.75rem;color:#4a5568;">© 2025 Sohel Enterprises. All rights reserved.</p>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay" onclick="handleOverlayClick(event)">
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h3>🛒 Your Cart</h3>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-summary" id="cartSummary" style="display:none">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+
+      <div id="orderFormWrap">
+        <form class="order-form" id="orderForm" action="https://formspree.io/f/maqlkdja" method="POST">
+          <h4>Delivery Details</h4>
+          <div class="form-row">
+            <label>Full Name *</label>
+            <input type="text" name="full_name" placeholder="Enter your name" required>
+          </div>
+          <div class="form-row">
+            <label>Phone Number *</label>
+            <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="form-row">
+            <label>Delivery Address *</label>
+            <input type="text" name="address" placeholder="Village, District, State" required>
+          </div>
+          <div class="form-row">
+            <label>Vehicle Type *</label>
+            <select name="vehicle_type" required>
+              <option value="">Select vehicle type</option>
+              <option>Truck</option>
+              <option>Bus</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Notes (Optional)</label>
+            <textarea name="notes" placeholder="Any special requirements..."></textarea>
+          </div>
+          <input type="hidden" name="order_items" id="orderItemsInput">
+          <input type="hidden" name="order_total" id="orderTotalInput">
+          <input type="hidden" name="_subject" value="New U-Bolt Order — Sohel Enterprises">
+          <button type="submit" class="submit-btn" id="submitBtn">Place Order</button>
+        </form>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="success-icon">✅</div>
+        <h3>Order Placed Successfully!</h3>
+        <p>Sohel Enterprises will contact you shortly on the number provided.<br><br>For quick response, you can also WhatsApp:<br><strong style="color:var(--accent)">+91 70562 33017</strong></p>
+        <a class="btn-primary" href="https://wa.me/917056233017?text=Hello%20I%20just%20placed%20an%20order%20on%20your%20website" target="_blank" style="margin-top:1rem;display:inline-block;">Confirm on WhatsApp</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <span id="toastMsg">Item added to cart</span>
+</div>
+
+<div class="float-btns">
+  <a class="float-btn float-wa" href="https://wa.me/917056233017?text=Hello%20I%20want%20to%20order%20U-bolts" target="_blank" title="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a class="float-btn float-call" href="tel:+917056233017" title="Call">
+    <svg viewBox="0 0 24 24" fill="var(--primary)"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+</div>
+
+<script>
+const PRODUCTS = [
+  {id:1,name:'U-Bolt 11 inch',price:71,category:'Truck Suspension',img:'https://i.ibb.co/ccTLdCDc/Screenshot-2026-04-08-131235.png',desc:'Strong suspension U-bolt'},
+  {id:2,name:'U-Bolt 12 inch',price:74,category:'Truck Suspension',img:'https://i.ibb.co/DgR33Gw6/Screenshot-2026-04-08-131453.png',desc:'Durable for trucks'},
+  {id:3,name:'U-Bolt 13 inch',price:77,category:'Truck Suspension',img:'https://i.ibb.co/JVWfZnh/Screenshot-2026-04-08-131545.png',desc:'High-strength steel bolt'},
+  {id:4,name:'U-Bolt 14 inch',price:80,category:'Heavy-Duty',img:'https://i.ibb.co/7NTCffVw/Screenshot-2026-04-08-131656.png',desc:'Heavy load support'},
+  {id:5,name:'U-Bolt 15 inch',price:83,category:'Heavy-Duty',img:'https://i.ibb.co/Q7yTRT0h/Screenshot-2026-04-08-131827.png',desc:'Premium quality metal'},
+  {id:6,name:'U-Bolt 16 inch',price:86,category:'Heavy-Duty',img:'https://i.ibb.co/v4msmGrz/Screenshot-2026-04-08-132027.png',desc:'Extra strong build'},
+  {id:7,name:'U-Bolt 17 inch',price:89,category:'Extra Long',img:'https://i.ibb.co/WWht9tzD/Screenshot-2026-04-08-132116.png',desc:'Long size for trucks'},
+  {id:8,name:'U-Bolt 18 inch',price:92,category:'Extra Long',img:'https://i.ibb.co/TBWzMKJ0/Screenshot-2026-04-08-132149.png',desc:'Extended durability'},
+  {id:9,name:'U-Bolt 19 inch',price:95,category:'Extra Long',img:'https://i.ibb.co/Hv2p5Yg/Screenshot-2026-04-08-132228.png',desc:'Heavy industrial use'},
+  {id:10,name:'U-Bolt 20 inch',price:98,category:'Extra Long',img:'https://i.ibb.co/zVZyHG2j/Screenshot-2026-04-08-132311.png',desc:'Maximum strength bolt'},
+];
+
+let cart = JSON.parse(localStorage.getItem('sohel_cart')||'[]');
+let toastTimer;
+
+function saveCart(){localStorage.setItem('sohel_cart',JSON.stringify(cart));}
+
+function renderProducts(){
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map(p=>`
+    <div class="product-card" data-cat="${p.category}" id="pc${p.id}">
+      <div class="product-badge">${p.category}</div>
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">₹${p.price}</div>
+          <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card=>{
+    card.classList.toggle('hidden', cat!=='all' && card.dataset.cat!==cat);
+  });
+}
+
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const existing = cart.find(x=>x.id===id);
+  if(existing) existing.qty++;
+  else cart.push({id,name:p.name,price:p.price,img:p.img,qty:1});
+  saveCart();
+  updateCartUI();
+  showToast(`${p.name} added to cart`);
+}
+
+function updateCartUI(){
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = count;
+  countEl.classList.toggle('show', count>0);
+  renderCartBody();
+  const summary = document.getElementById('cartSummary');
+  summary.style.display = cart.length ? 'block' : 'none';
+  document.getElementById('cartTotal').textContent = '₹'+total;
+  document.getElementById('orderItemsInput').value = cart.map(i=>`${i.name} x${i.qty} @ ₹${i.price}`).join(' | ');
+  document.getElementById('orderTotalInput').value = '₹'+total;
+}
+
+function renderCartBody(){
+  const body = document.getElementById('cartBody');
+  if(!cart.length){
+    body.innerHTML=`<div class="empty-cart"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM5.17 5H19l-1.68 8.39c-.16.79-.84 1.36-1.65 1.36H8.1c-.82 0-1.52-.6-1.66-1.41L5.17 5zM3 3H1V1H3V3zM5.17 3H1V1h4l.17 2z"/></svg><p>Your cart is empty.<br>Add some U-Bolts above!</p></div>`;
+    return;
+  }
+  body.innerHTML = cart.map(item=>`
+    <div class="cart-item">
+      <img class="cart-item-img" src="${item.img}" alt="${item.name}" loading="lazy">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">₹${item.price} each</div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          <span style="font-size:0.82rem;color:var(--accent);margin-left:4px;font-weight:700">= ₹${item.price*item.qty}</span>
+        </div>
+      </div>
+      <button class="remove-btn" onclick="removeItem(${item.id})" title="Remove">✕</button>
+    </div>
+  `).join('');
+}
+
+function changeQty(id,delta){
+  const item = cart.find(x=>x.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) cart = cart.filter(x=>x.id!==id);
+  saveCart();
+  updateCartUI();
+}
+
+function removeItem(id){
+  cart = cart.filter(x=>x.id!==id);
+  saveCart();
+  updateCartUI();
+}
+
+function toggleCart(){
+  const overlay = document.getElementById('cartOverlay');
+  overlay.classList.toggle('open');
+  if(overlay.classList.contains('open')) updateCartUI();
+}
+
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('cartOverlay')) toggleCart();
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+document.getElementById('orderForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='Sending Order...';
+  try{
+    const fd = new FormData(this);
+    const res = await fetch(this.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}});
+    if(res.ok){
+      document.getElementById('orderFormWrap').style.display='none';
+      document.getElementById('successMsg').classList.add('show');
+      cart=[];saveCart();updateCartUI();
+      document.getElementById('cartCount').classList.remove('show');
+    } else {
+      alert('There was an issue sending your order. Please WhatsApp us directly at +91 70562 33017');
+      btn.disabled=false;btn.textContent='Place Order';
+    }
+  } catch(err){
+    alert('Network error. Please WhatsApp us at +91 70562 33017 to place your order.');
+    btn.disabled=false;btn.textContent='Place Order';
+  }
+});
+
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
